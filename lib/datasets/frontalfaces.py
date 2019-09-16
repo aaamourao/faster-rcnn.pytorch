@@ -25,13 +25,16 @@ class frontalfaces(imdb):
         dataset = fetch_lfw_people(min_faces_per_person=70, resize=0.4)
         self._image_set = image_set
 
-        X_train, X_t, y_t, y_t = train_test_split(
+        X = dataset.data
+        y = dataset.target
+
+        X_train, X_t, y_train, y_t = train_test_split(
                 X, y, test_size=0.25, random_state=42)
         X_val, X_test, y_val, y_test = train_test_split(
                 X_t, y_t, test_size=0.5, random_state=42)
 
         if image_set == 'train':
-            self._image_index = dataset.X_train
+            self._image_index = X_train
             self._classes = y_train
         elif image_set == 'val':
             self._image_index = X_val
