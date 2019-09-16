@@ -35,7 +35,7 @@ def prepare_roidb(imdb):
       with open(cache_file, 'wb') as f:
         pickle.dump(sizes, f)
       print('Done!!')
-         
+
   for i in range(len(imdb.image_index)):
     roidb[i]['img_id'] = imdb.image_id_at(i)
     roidb[i]['image'] = imdb.image_path_at(i)
